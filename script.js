@@ -16,7 +16,7 @@ const CONFIG = {
   // Pega aquí el link de la app de citas (Booksy, MoeGo, Square, Vagaro, Calendly...).
   // Con esto, TODOS los botones de "Book Now" llevan directo a la app.
   // Si lo dejas vacío, los botones bajan al formulario y todo sigue funcionando igual.
-  booking: "",
+  booking: "https://www.raykota.app/book/monarca-pet-grooming-d7f9",
 
   // ¿Dejar también el formulario como alternativa para quien no quiera usar la app?
   // true  = se queda (recomendado: no pierdes al cliente que no quiere crear cuenta)
