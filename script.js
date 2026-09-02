@@ -6,7 +6,7 @@
 const CONFIG = {
   phone:     "+18132124033",                  // ← tu teléfono real
   phonePretty:"+1 (813) 212-4033",            // ← cómo se muestra en pantalla
-  whatsapp:  "18133308027",                   // ← WhatsApp SIN + ni espacios
+  whatsapp:  "+18133308027",                   // ← WhatsApp SIN + ni espacios
   email:     "monarcapetgrooming@gmail.com",  // ← tu correo
   instagram: "#",                             // ← https://instagram.com/tuusuario
   facebook:  "#",                             // ← https://facebook.com/tupagina
