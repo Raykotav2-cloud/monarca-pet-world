@@ -21,7 +21,7 @@ const CONFIG = {
   // ¿Dejar también el formulario como alternativa para quien no quiera usar la app?
   // true  = se queda (recomendado: no pierdes al cliente que no quiere crear cuenta)
   // false = se oculta y solo queda la app, el teléfono y WhatsApp
-  bookingKeepForm: true
+  bookingKeepForm: false
 };
 
 /* ============================================================
