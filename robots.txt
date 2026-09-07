@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Rastreadores de asistentes de IA — permitidos a proposito:
+# que puedan leer la pagina es lo que hace que Monarca aparezca
+# cuando alguien pregunta por grooming a domicilio en Tampa.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://monarcapetworld.com/sitemap.xml
