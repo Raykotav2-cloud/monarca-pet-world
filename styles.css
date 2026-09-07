@@ -342,6 +342,24 @@ ul{ margin:0; padding:0; list-style:none; }
 
 /* ---------- Zona de servicio ---------- */
 .areas{ background:var(--cream); padding-top:0; }
+.area-groups{ display:flex; flex-direction:column; gap:30px; }
+.area-group{ display:flex; flex-direction:column; align-items:center; gap:15px; }
+.area-group h3{
+  display:flex; align-items:center; gap:14px;
+  margin:0; font-family:var(--f-body); font-size:12px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--gold-deep);
+}
+.area-group h3::before, .area-group h3::after{
+  content:""; width:34px; height:1px; background:var(--rule-strong, #C9BAA3);
+  background:linear-gradient(90deg, transparent, var(--gold));
+}
+.area-group h3::after{ background:linear-gradient(90deg, var(--gold), transparent); }
+
+.area-note{
+  text-align:center; margin:30px auto 0; max-width:520px;
+  font-size:14.5px; color:var(--ink-soft);
+}
+
 .area-chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:11px; }
 .area-chips li{
   padding:10px 20px; border-radius:var(--r-full); background:var(--white);

@@ -265,6 +265,18 @@ const CONFIG = {
     });
   }
 
+  /* Arma el aviso con nodos de texto: nada de lo que escriba el
+     visitante puede convertirse en HTML. */
+  function showNote(node, text, url, linkText) {
+    node.textContent = text;
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = linkText;
+    node.appendChild(a);
+  }
+
   /* ---------- 7. Formulario de reserva ---------- */
   function initForm() {
     const form = $("#bookingForm");
@@ -326,18 +338,15 @@ const CONFIG = {
           if (!res.ok) throw new Error("bad status");
           form.reset();
           note.className = "form-note ok";
-          note.innerHTML = t(
-            'Thank you! We received your request and reply the same day. ',
-            '¡Gracias! Recibimos tu solicitud y respondemos el mismo día. '
-          ) + '<a href="' + waUrl + '" target="_blank" rel="noopener">' +
-            t("Send it by WhatsApp too", "Envíalo también por WhatsApp") + "</a>";
+          showNote(note, t(
+            "Thank you! We received your request and reply the same day. ",
+            "¡Gracias! Recibimos tu solicitud y respondemos el mismo día. "
+          ), waUrl, t("Send it by WhatsApp too", "Envíalo también por WhatsApp"));
           return;
         } catch (err) {
           note.className = "form-note err";
-          note.innerHTML = t(
-            "We couldn't send the email. ", "No se pudo enviar el correo. "
-          ) + '<a href="' + waUrl + '" target="_blank" rel="noopener">' +
-            t("Send by WhatsApp instead", "Envíalo por WhatsApp") + "</a>";
+          showNote(note, t("We couldn't send the email. ", "No se pudo enviar el correo. "),
+            waUrl, t("Send by WhatsApp instead", "Envíalo por WhatsApp"));
           return;
         }
       }
@@ -345,10 +354,8 @@ const CONFIG = {
       // Sin Formspree: WhatsApp directo
       window.open(waUrl, "_blank", "noopener");
       note.className = "form-note ok";
-      note.innerHTML = t(
-        "Opening WhatsApp with your request. ", "Abriendo WhatsApp con tu solicitud. "
-      ) + '<a href="' + waUrl + '" target="_blank" rel="noopener">' +
-        t("Didn't open? Tap here", "¿No abrió? Toca aquí") + "</a>";
+      showNote(note, t("Opening WhatsApp with your request. ", "Abriendo WhatsApp con tu solicitud. "),
+        waUrl, t("Didn't open? Tap here", "¿No abrió? Toca aquí"));
     });
   }
 
