@@ -6,7 +6,7 @@
 const CONFIG = {
   phone:     "+18132124033",                  // ← tu teléfono real
   phonePretty:"+1 (813) 212-4033",            // ← cómo se muestra en pantalla
-  whatsapp:  "+18133308027",                   // ← WhatsApp SIN + ni espacios
+  whatsapp:  "18133308027",                   // ← WhatsApp SIN + ni espacios
   email:     "monarcapetgrooming@gmail.com",  // ← tu correo
   instagram: "#",                             // ← https://instagram.com/tuusuario
   facebook:  "#",                             // ← https://facebook.com/tupagina
@@ -44,7 +44,9 @@ const CONFIG = {
       a.href = "mailto:" + CONFIG.email;
       a.textContent = CONFIG.email;
     });
-    $$('a[href*="wa.me"]').forEach(a => { a.href = "https://wa.me/" + CONFIG.whatsapp; });
+    // wa.me solo acepta digitos: se limpia por si alguien pega "+1 (813) 330-8027"
+    const wa = String(CONFIG.whatsapp || "").replace(/\D/g, "");
+    $$('a[href*="wa.me"]').forEach(a => { a.href = "https://wa.me/" + wa; });
     const ig = $('.socials a[aria-label="Instagram"]');
     const fb = $('.socials a[aria-label="Facebook"]');
     if (ig) ig.href = CONFIG.instagram;
@@ -309,7 +311,7 @@ const CONFIG = {
         "\n" + t("Package", "Paquete") + ": " + data.package +
         (data.notes ? "\n" + t("Notes", "Notas") + ": " + data.notes : "");
 
-      const waUrl = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
+      const waUrl = "https://wa.me/" + String(CONFIG.whatsapp||"").replace(/\D/g,"") + "?text=" + encodeURIComponent(msg);
 
       // Envío por correo (Formspree) si está configurado
       if (CONFIG.formspree) {
