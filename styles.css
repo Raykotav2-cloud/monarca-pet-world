@@ -145,16 +145,13 @@ ul{ margin:0; padding:0; list-style:none; }
   position:absolute; width:520px; height:520px; left:50%; top:-160px; transform:translateX(-50%);
   background:radial-gradient(circle, rgba(240,206,138,.20), transparent 68%); pointer-events:none;
 }
-/* Sin z-index a propósito: un z-index aquí crearía un contexto de apilamiento
-   que aislaría el mix-blend-mode del logo y dejaría visible su fondo negro.
-   Como .hero-glow va antes en el HTML, el contenido igual queda encima. */
-.hero-inner{ position:relative; }
+.hero-inner{ position:relative; z-index:2; }
 
-/* El logo viene con fondo negro. "screen" hace que ese negro desaparezca
-   sobre cualquier fondo oscuro, sin necesidad de un PNG transparente. */
+/* El logo es un PNG con transparencia real: no hace falta mezclarlo
+   con el fondo, se apoya solo sobre cualquier color. */
 .hero-logo{
   width:min(420px, 78%); height:auto; margin:0 auto 6px;
-  mix-blend-mode:screen; filter:drop-shadow(0 10px 30px rgba(0,0,0,.55));
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,.55));
 }
 .eyebrow{
   font-family:var(--f-display); font-weight:600; letter-spacing:.22em; text-transform:uppercase;
@@ -168,7 +165,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .hero-badge{
   display:inline-flex; align-items:center; gap:8px; margin-top:26px; padding:9px 20px; border-radius:var(--r-full);
   background:rgba(212,162,76,.14); border:1px solid rgba(212,162,76,.45); color:var(--gold-light);
-  font-family:var(--f-display); font-weight:600; font-size:14px; transform:rotate(-1.5deg);
+  font-family:var(--f-display); font-weight:600; font-size:14px;
 }
 .bfly{ width:20px; height:20px; color:var(--monarch); flex:none; }
 
@@ -457,7 +454,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .site-footer{ background:var(--black); color:var(--on-dark-soft); padding:44px 0 22px; }
 .footer-inner{ display:flex; flex-wrap:wrap; align-items:center; gap:24px; justify-content:space-between; }
 .footer-brand{ display:flex; flex-direction:column; align-items:flex-start; gap:4px; }
-.footer-brand img{ width:190px; height:auto; mix-blend-mode:screen; }
+.footer-brand img{ width:190px; height:auto; }
 .footer-brand small{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--on-dark-soft); padding-left:4px; }
 .footer-nav{ display:flex; flex-wrap:wrap; gap:22px; }
 .footer-nav a{ font-size:15px; }
