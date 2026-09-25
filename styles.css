@@ -352,6 +352,10 @@ ul{ margin:0; padding:0; list-style:none; }
 }
 .price-extra li b{ color:var(--ink); font-variant-numeric:tabular-nums; white-space:nowrap; }
 .price-extra .mini{ margin:10px 0 0; font-size:12.5px; color:var(--ink-faint); line-height:1.45; }
+.price-extra .mini.top{
+  margin:0 0 12px; padding:9px 11px; border-radius:6px;
+  background:var(--paper); color:var(--ink-soft); border-left:3px solid var(--blue-500);
+}
 
 .pkg-note{ text-align:center; margin:34px auto 0; max-width:640px; font-size:14.5px; color:var(--ink-soft); }
 
