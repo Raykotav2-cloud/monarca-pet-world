@@ -8,8 +8,8 @@ const CONFIG = {
   phonePretty:"+1 (813) 212-4033",            // ← cómo se muestra en pantalla
   whatsapp:  "18133308027",                   // ← WhatsApp SIN + ni espacios
   email:     "monarcapetgrooming@gmail.com",  // ← tu correo
-  instagram: "#",                             // ← https://instagram.com/tuusuario
-  facebook:  "#",                             // ← https://facebook.com/tupagina
+  instagram: "https://www.instagram.com/monarcapetgrooming",
+  facebook:  "",                             // ← pegar cuando exista la pagina
   formspree: "",                              // ← ej: "https://formspree.io/f/xxxxxxx" (vacío = solo WhatsApp)
 
   // --- Reservas en línea ---
@@ -47,10 +47,18 @@ const CONFIG = {
     // wa.me solo acepta digitos: se limpia por si alguien pega "+1 (813) 330-8027"
     const wa = String(CONFIG.whatsapp || "").replace(/\D/g, "");
     $$('a[href*="wa.me"]').forEach(a => { a.href = "https://wa.me/" + wa; });
-    const ig = $('.socials a[aria-label="Instagram"]');
-    const fb = $('.socials a[aria-label="Facebook"]');
-    if (ig) ig.href = CONFIG.instagram;
-    if (fb) fb.href = CONFIG.facebook;
+    const redes = [["Instagram", CONFIG.instagram], ["Facebook", CONFIG.facebook]];
+    redes.forEach(([nombre, url]) => {
+      const a = $('.socials a[aria-label="' + nombre + '"]');
+      if (!a) return;
+      if (url && url !== "#") {
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+      } else {
+        a.remove();            // sin perfil, sin icono muerto
+      }
+    });
 
     // Reservas en línea: si hay app configurada, todos los botones llevan a ella
     if (CONFIG.booking) {
@@ -80,6 +88,8 @@ const CONFIG = {
         const data = JSON.parse(jsonLd.textContent);
         data.telephone = CONFIG.phone;
         data.email = CONFIG.email;
+        const perfiles = [CONFIG.instagram, CONFIG.facebook].filter(u => u && u !== "#");
+        if (perfiles.length) data.sameAs = perfiles;
         if (CONFIG.booking) {
           data.potentialAction = {
             "@type": "ReserveAction",
