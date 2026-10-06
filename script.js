@@ -391,7 +391,35 @@ const CONFIG = {
     });
   }
 
-  /* ---------- 9. Año del footer ---------- */
+  /* ---------- 9. Medicion de conversiones ---------- */
+  /* Sin esto, Analytics solo cuenta visitas. Los tres caminos por los
+     que llega un cliente se registran como el mismo evento de Google
+     ("generate_lead") con un metodo distinto, asi en Google Ads se
+     marca una sola conversion y aun se puede ver cual funciona. */
+  function initMedicion() {
+    const avisar = metodo => {
+      if (typeof window.gtag !== "function") return;   // bloqueador de anuncios
+      window.gtag("event", "generate_lead", { method: metodo });
+    };
+    const alHacerClic = (selector, metodo) =>
+      $$(selector).forEach(a => a.addEventListener("click", () => avisar(metodo)));
+
+    alHacerClic("[data-book]", "booking_app");
+    alHacerClic('a[href*="wa.me"]', "whatsapp");
+    alHacerClic('a[href^="tel:"]', "phone");
+
+    // cuanta gente abre de verdad la lista completa de precios
+    const precios = $(".price-more");
+    if (precios) {
+      precios.addEventListener("toggle", () => {
+        if (precios.open && typeof window.gtag === "function") {
+          window.gtag("event", "view_price_list");
+        }
+      }, { once: true });
+    }
+  }
+
+  /* ---------- 10. Año del footer ---------- */
   function initYear() {
     const y = $("#year");
     if (y) y.textContent = String(new Date().getFullYear());
@@ -407,6 +435,7 @@ const CONFIG = {
     initFaq();
     initForm();
     initPlaceholders();
+    initMedicion();
     initYear();
   });
 })();
