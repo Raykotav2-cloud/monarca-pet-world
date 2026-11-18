@@ -135,6 +135,12 @@ const CONFIG = {
       el.textContent = text;
     });
 
+    // en las páginas de ciudad el texto alternativo también cambia de idioma
+    $$("img[data-alt-es]").forEach(img => {
+      if (!img.dataset.altEn) img.dataset.altEn = img.alt;
+      img.alt = lang === "es" ? img.dataset.altEs : img.dataset.altEn;
+    });
+
     const toggle = $("#langToggle");
     if (toggle) {
       $(".lang-on", toggle).textContent = lang === "en" ? "EN" : "ES";

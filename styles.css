@@ -438,6 +438,8 @@ ul{ margin:0; padding:0; list-style:none; }
   border:1.5px solid var(--cream-2); font-weight:600; font-size:14.5px; color:var(--brown-700);
   box-shadow:var(--shadow-sm); transition:border-color .2s ease, color .2s ease, transform .2s ease;
 }
+.area-chips li a{ color:inherit; text-decoration:none; display:block; margin:-10px -20px; padding:10px 20px; }
+.area-chips li:has(a){ border-color:var(--blue-300); font-weight:700; color:var(--brand); }
 .area-chips li:hover{ border-color:var(--monarch); color:var(--gold-deep); transform:translateY(-2px); }
 
 /* ---------- FAQ ---------- */
@@ -618,3 +620,29 @@ ul{ margin:0; padding:0; list-style:none; }
   html{ scroll-behavior:auto; }
   *,*::before,*::after{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
+
+
+/* ---------- Paginas de ciudad ---------- */
+.hero-ciudad{ padding-bottom:150px; }
+.hero-ciudad .hero-title{ font-size:clamp(2.2rem, 6vw, 4rem); }
+
+.ciudad-tarifas{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:14px;
+  max-width:720px; margin-inline:auto;
+}
+.ciudad-tarifas li{
+  flex:1 1 200px; display:flex; flex-direction:column; align-items:center; gap:4px;
+  padding:20px 18px; background:var(--white); border:1px solid var(--cream-2);
+  border-top:3px solid var(--blue-500); border-radius:var(--r-md); box-shadow:var(--shadow-sm);
+}
+.ciudad-tarifas span{ font-size:14px; color:var(--ink-soft); text-align:center; }
+.ciudad-tarifas b{ font-family:var(--f-display); font-size:30px; color:var(--brand); line-height:1.05; }
+
+.ciudad-precios .pkg-note a,
+.ciudad-volver a{ color:var(--gold-deep); font-weight:700; text-decoration:underline; }
+.ciudad-precios .pkg-note a:hover,
+.ciudad-volver a:hover{ color:var(--blue-500); }
+
+.ciudad-cta{ padding-top:clamp(50px,7vw,84px); }
+.ciudad-cta .hero-cta{ justify-content:center; }
+.ciudad-volver{ text-align:center; margin:34px 0 0; font-size:15px; }
